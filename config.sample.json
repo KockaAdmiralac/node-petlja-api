@@ -1,0 +1,11 @@
+{
+    "petlja": {
+        "username": "Your Petlja username",
+        "password": "Your Petlja password"
+    },
+    "discord": {
+        "id": "Discord webhook ID",
+        "token": "Discord webhook token"
+    },
+    "interval": 10000
+}

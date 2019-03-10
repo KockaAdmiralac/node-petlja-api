@@ -1,0 +1,32 @@
+{
+    "name": "petlja-chat",
+    "version": "0.0.1",
+    "description": "Relays the chat from algora.petlja.org to Discord.",
+    "keywords": [
+        "petlja",
+        "discord"
+    ],
+    "license": "GPL-3.0-or-later",
+    "author": {
+        "name": "KockaAdmiralac",
+        "email": "1405223@gmail.com",
+        "url": "https://github.com/KockaAdmiralac"
+    },
+    "contributors": [],
+    "main": "main.js",
+    "scripts": {
+        "start": "node main.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/KockaAdmiralac/petlja-chat.git"
+    },
+    "dependencies": {
+        "node-html-parser": ">=1.1.10",
+        "request": ">=2.88.0",
+        "request-promise-native": ">=1.0.7"
+    },
+    "devDependencies": {
+        "eslint": ">=5.15.1"
+    }
+}
