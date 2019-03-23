@@ -1,0 +1,68 @@
+{
+    "petlja": {
+        "method": "post",
+        "url": "/Account/Login",
+        "request": {
+            "username": {
+                "type": "form",
+                "name": "LoginViewModel.UserNameOrEmail",
+                "position": 0,
+                "input": "string"
+            },
+            "password": {
+                "type": "form",
+                "name": "LoginViewModel.Password",
+                "position": 1,
+                "input": "string"
+            },
+            "LoginViewModel.RememberMe": {
+                "type": "form",
+                "value": true
+            },
+            "__RequestVerificationToken": {
+                "type": "form",
+                "fetch": {
+                    "form": ".form-horizontal"
+                }
+            }
+        },
+        "response": "ignore"
+    },
+    "takprog": {
+        "method": "post",
+        "url": "/login",
+        "domain": "takprog",
+        "request": {
+            "username": {
+                "type": "form",
+                "input": "string"
+            },
+            "password": {
+                "type": "form",
+                "input": "string"
+            },
+            "_sso": {
+                "type": "form",
+                "value": "sso"
+            },
+            "_token": {
+                "type": "form",
+                "fetch": {
+                    "form": "#login-nav"
+                }
+            }
+        },
+        "response": "ignore"
+    },
+    "algora": {
+        "method": "get",
+        "url": "/session/sso",
+        "domain": "algora",
+        "request": {
+            "return_path": {
+                "type": "query",
+                "value": "/"    
+            }
+        }
+    }
+}

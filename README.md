@@ -1,13 +1,21 @@
-# petlja-chat
-Simple [Node.js](https://nodejs.org) relay from [Algora](https://algora.petlja.org)'s chat to Discord using webhooks and embeds.
+# node-petlja-api
+Library for communicating with various aspects of [Petlja](https://petlja.org).
 
 ## Usage
 ### Installation
-Before running the relay, use `npm install` to install required dependencies.
+To install the library in your project, use:
+```console
+$ npm install petlja
+```
 
-### Configuration
-See the `config.sample.json` file for a sample configuration. Rename it to `config.json` and fill in the fields to configure the relay.
+### Usage
+The library contains several classes in itself:
+- `Client`: The class for communicating with Petlja. When instantiated, generates several communication modules whose documentation can be found inside the `docs` folder.
 
-### Running
-To run the relay, use `npm start`.
+### Examples
+You can see usage examples in the `examples` folder.
 
+## TODO
+- **Documentation.**
+- `language.js` for mapping programming language IDs to language names.
+- Unit tests.

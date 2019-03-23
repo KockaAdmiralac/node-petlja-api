@@ -1,0 +1,407 @@
+{
+    "_common": {
+        "domain": "arena",
+        "token": true,
+        "json": true,
+        "response": "api"
+    },
+    "overview": {
+        "method": "get",
+        "url": "/api/competition/competitor-overview/{id}",
+        "request": {
+            "id": {
+                "type": "url",
+                "position": 0,
+                "input": "number"
+            }
+        }
+    },
+    "submit": {
+        "method": "post",
+        "url": "/api/competition/submit-competition-problem",
+        "request": {
+            "competitionId": {
+                "type": "body",
+                "position": 0,
+                "input": "number"
+            },
+            "problemId": {
+                "type": "body",
+                "position": 1,
+                "input": "number"
+            },
+            "source": {
+                "type": "body",
+                "position": 2,
+                "input": "string"
+            },
+            "languageId": {
+                "type": "body",
+                "position": 3,
+                "input": "number"
+            }
+        }
+    },
+    "submitCI": {
+        "method": "post",
+        "url": "/api/competition/submit-custom-invocation",
+        "request": {
+            "competitionId": {
+                "type": "body",
+                "position": 0,
+                "input": "number"
+            },
+            "problemId": {
+                "type": "body",
+                "position": 1,
+                "input": "number"
+            },
+            "source": {
+                "type": "body",
+                "position": 2,
+                "input": "string"
+            },
+            "languageId": {
+                "type": "body",
+                "position": 3,
+                "input": "number"
+            },
+            "input": {
+                "type": "body",
+                "position": 4,
+                "input": "string"
+            }
+        }
+    },
+    "evaluate": {
+        "method": "get",
+        "url": "/api/competition/evaluate/{id}",
+        "request": {
+            "id": {
+                "type": "url",
+                "position": 0,
+                "input": "number"
+            }
+        }
+    },
+    "evaluateCI": {
+        "method": "get",
+        "url": "/api/competition/evaluateci/{id}",
+        "request": {
+            "id": {
+                "type": "url",
+                "position": 0,
+                "input": "number"
+            }
+        }
+    },
+    "score": {
+        "method": "get",
+        "url": "/api/competition/competitor-score/{id}",
+        "request": {
+            "id": {
+                "type": "url",
+                "position": 0,
+                "input": "number"
+            }
+        }
+    },
+    "submissionScore": {
+        "method": "get",
+        "url": "/api/competition/competitor-score-for-submission/{id}",
+        "request": {
+            "id": {
+                "type": "url",
+                "position": 0,
+                "input": "number"
+            }
+        }
+    },
+    "print": {
+        "method": "post",
+        "url": "/api/competition/submit-for-print",
+        "request": {
+            "competitionId": {
+                "type": "body",
+                "position": 0,
+                "input": "number"
+            },
+            "source": {
+                "type": "body",
+                "position": 1,
+                "input": "string"
+            },
+            "fileName": {
+                "type": "body",
+                "position": 2,
+                "input": "string"
+            }
+        }
+    },
+    "ask": {
+        "method": "post",
+        "url": "/api/competition/ask-question",
+        "request": {
+            "competitionId": {
+                "type": "body",
+                "position": 0,
+                "input": "number"
+            },
+            "question": {
+                "type": "body",
+                "position": 1,
+                "input": "string"
+            },
+            "problemId": {
+                "type": "body",
+                "position": 2,
+                "input": "number"
+            }
+        }
+    },
+    "answer": {
+        "method": "post",
+        "url": "/api/dashboard/competitions/questions/answer",
+        "request": {
+            "competitionId": {
+                "type": "body",
+                "position": 0,
+                "input": "number"
+            },
+            "questionId": {
+                "type": "body",
+                "position": 1,
+                "input": "number"
+            },
+            "answer": {
+                "type": "body",
+                "position": 2,
+                "input": "string"
+            },
+            "createAnnouncement": {
+                "type": "body",
+                "position": 3,
+                "input": "boolean"
+            }
+        }
+    },
+    "validate": {
+        "method": "get",
+        "url": "/api/competition/validate-competitor/{id}",
+        "request": {
+            "id": {
+                "type": "url",
+                "position": 0,
+                "input": "number"
+            }
+        }
+    },
+    "competitorQA": {
+        "method": "get",
+        "url": "/api/competition/competitor-announcements-and-questions/{id}",
+        "request": {
+            "id": {
+                "type": "url",
+                "position": 0,
+                "input": "number"
+            }
+        }
+    },
+    "organizerQA": {
+        "method": "post",
+        "url": "/api/competition/organizer-announcements-and-questions",
+        "request": {
+            "competitionId": {
+                "type": "body",
+                "position": 0,
+                "input": "number"
+            },
+            "loadNew": {
+                "type": "body",
+                "value": true
+            },
+            "loadNewQuestions": {
+                "type": "body",
+                "value": true
+            },
+            "questionIdStamp": {
+                "type": "body",
+                "position": 1,
+                "input": "string"
+            }
+        }
+    },
+    "scoreboard": {
+        "method": "get",
+        "url": "/api/dashboard/competitions/scoreboard/compact/{id}",
+        "request": {
+            "id": {
+                "type": "url",
+                "position": 0,
+                "input": "number"
+            }
+        }
+    },
+    "submissions": {
+        "method": "post",
+        "url": "/api/competition/submissions",
+        "request": {
+            "competitionId": {
+                "type": "body",
+                "position": 0,
+                "input": "number"
+            },
+            "loadNew": {
+                "type": "body",
+                "value": true
+            },
+            "idStamp": {
+                "type": "body",
+                "position": 1,
+                "input": "string"
+            }
+        }
+    },
+    "competitorSubmissions": {
+        "method": "post",
+        "url": "/api/competition/competitor-submissions",
+        "request": {
+            "competitionId": {
+                "type": "body",
+                "position": 0,
+                "input": "number"
+            },
+            "competitorUserName": {
+                "type": "body",
+                "position": 1,
+                "input": "string"
+            },
+            "checkedProblems": {
+                "type": "body",
+                "position": 2,
+                "input": "object"
+            },
+            "languageId": {
+                "type": "body",
+                "position": 3,
+                "input": "number"
+            },
+            "sentBefore": {
+                "type": "body",
+                "position": 4,
+                "input": "string"
+            },
+            "competitorsOnly": {
+                "type": "body",
+                "position": 5,
+                "input": "boolean"
+            }
+        }
+    },
+    "printQueue": {
+        "method": "get",
+        "url": "/api/dashboard/competitions/print-queue/{id}",
+        "request": {
+            "id": {
+                "type": "url",
+                "position": 0,
+                "input": "number"
+            }
+        }
+    },
+    "announce": {
+        "method": "post",
+        "url": "/api/dashboard/competitions/announcements/add",
+        "request": {
+            "competitionId": {
+                "type": "body",
+                "position": 0,
+                "input": "number"
+            },
+            "title": {
+                "type": "body",
+                "position": 1,
+                "input": "string"
+            },
+            "content": {
+                "type": "body",
+                "position": 2,
+                "input": "string"
+            },
+            "problemId": {
+                "type": "body",
+                "position": 3,
+                "input": "number"
+            }
+        }
+    },
+    "deannounce": {
+        "method": "post",
+        "url": "/api/competition/announcements/delete",
+        "request": {
+            "competitionId": {
+                "type": "body",
+                "position": 0,
+                "input": "number"
+            },
+            "announcementId": {
+                "type": "body",
+                "position": 0,
+                "input": "number"
+            }
+        }
+    },
+    "questions": {
+        "method": "post",
+        "url": "/api/competition/questions/competitor-questions",
+        "request": {
+            "competitionId": {
+                "type": "body",
+                "position": 0,
+                "input": "number"
+            },
+            "competitorUserName": {
+                "type": "body",
+                "position": 1,
+                "input": "string"
+            },
+            "problemId": {
+                "type": "body",
+                "position": 2,
+                "input": "number"
+            }
+        }
+    },
+    "statistics": {
+        "method": "get",
+        "url": "/api/competition/get-statistics/{id}",
+        "request": {
+            "id": {
+                "type": "url",
+                "position": 0,
+                "input": "number"
+            }
+        }
+    },
+    "byUrl": {
+        "method": "get",
+        "url": "/competition/{url}",
+        "token": false,
+        "json": false,
+        "request": {
+            "url": {
+                "type": "url",
+                "position": 0,
+                "input": "string"
+            }
+        },
+        "response": "competitionHTML"
+    },
+    "competitions": {
+        "method": "get",
+        "url": "/",
+        "token": false,
+        "json": false,
+        "response": "arenaHTML"
+    }
+}

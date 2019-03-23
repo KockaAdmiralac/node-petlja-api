@@ -1,0 +1,21 @@
+{
+    "babbleBoot": {
+        "method": "get",
+        "url": "/babble/boot.json",
+        "domain": "algora",
+        "json": true
+    },
+    "babbleMessages": {
+        "method": "get",
+        "url": "/babble/topics/{id}.json",
+        "domain": "algora",
+        "json": true,
+        "request": {
+            "id": {
+                "type": "url",
+                "position": 0,
+                "input": "number"
+            }
+        }
+    }
+}

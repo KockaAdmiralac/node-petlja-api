@@ -1,7 +1,7 @@
 {
-    "name": "petlja-chat",
-    "version": "0.0.1",
-    "description": "Relays the chat from algora.petlja.org to Discord.",
+    "name": "petlja",
+    "version": "0.1.0",
+    "description": "API client for Petlja (petlja.org).",
     "keywords": [
         "petlja",
         "discord"
@@ -19,14 +19,14 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/KockaAdmiralac/petlja-chat.git"
+        "url": "https://github.com/KockaAdmiralac/node-petlja-api.git"
     },
     "dependencies": {
-        "node-html-parser": ">=1.1.10",
+        "node-html-parser": ">=1.1.13",
         "request": ">=2.88.0",
         "request-promise-native": ">=1.0.7"
     },
     "devDependencies": {
-        "eslint": ">=5.15.1"
+        "eslint": ">=5.15.3"
     }
 }
