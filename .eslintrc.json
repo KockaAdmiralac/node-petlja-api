@@ -9,6 +9,7 @@
     "parserOptions": {
         "ecmaVersion": 2018
     },
+    "root": true,
     "rules": {
         "for-direction": "warn",
         "getter-return": "error",

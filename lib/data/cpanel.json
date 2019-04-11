@@ -1,0 +1,179 @@
+{
+    "voucher": {
+        "method": "post",
+        "url": "/api/dashboard/profile/redeemVaucher/{voucher}",
+        "token": true,
+        "json": true,
+        "request": {
+            "voucher": {
+                "type": "url",
+                "position": 0,
+                "input": "string"
+            }
+        },
+        "response": "api"
+    },
+    "avatar": {
+        "method": "post",
+        "url": "/api/dashboard/profile/editImage",
+        "token": true,
+        "json": true,
+        "request": {
+            "Base64Image": {
+                "type": "body",
+                "position": 0,
+                "input": "string"
+            },
+            "FileName": {
+                "type": "body",
+                "position": 1,
+                "input": "string",
+                "value": "avatar.jpg"
+            }
+        },
+        "response": "api"
+    },
+    "lectures": {
+        "method": "post",
+        "url": "/api/dashboard/statistics/lectures/{id}",
+        "token": true,
+        "json": true,
+        "request": {
+            "id": {
+                "type": "url",
+                "position": 0,
+                "input": "number"
+            }
+        },
+        "response": "api"
+    },
+    "statistics": {
+        "method": "get",
+        "url": "/api/dashboard/statistics/{group}/{course}/{lecture}",
+        "token": true,
+        "json": true,
+        "request": {
+            "group": {
+                "type": "url",
+                "position": 0,
+                "input": "number"
+            },
+            "course": {
+                "type": "url",
+                "position": 1,
+                "input": "number"
+            },
+            "lecture": {
+                "type": "url",
+                "position": 2,
+                "input": "number"
+            }
+        },
+        "response": "api"
+    },
+    "userLectureStatistics": {
+        "method": "post",
+        "url": "/api/dashboard/statistics/getUserLectureStatistics/{user}/{lecture}",
+        "token": true,
+        "json": true,
+        "request": {
+            "user": {
+                "type": "url",
+                "position": 0,
+                "input": "number"
+            },
+            "lecture": {
+                "type": "url",
+                "position": 1,
+                "input": "number"
+            }
+        },
+        "response": "api"
+    },
+    "userProblemStatistics": {
+        "method": "post",
+        "url": "/api/content/getUserStatisticsForProblem",
+        "json": true,
+        "request": {
+            "problemId": {
+                "type": "body",
+                "position": 0,
+                "input": "number"
+            },
+            "userId": {
+                "type": "body",
+                "position": 1,
+                "input": "number"
+            }
+        },
+        "response": "api"
+    },
+    "elements": {
+        "method": "get",
+        "url": "/api/dashboard/elements/{group}/{course}/{lecture}",
+        "token": true,
+        "json": true,
+        "request": {
+            "group": {
+                "type": "url",
+                "position": 0,
+                "input": "number"
+            },
+            "course": {
+                "type": "url",
+                "position": 1,
+                "input": "number"
+            },
+            "lecture": {
+                "type": "url",
+                "position": 2,
+                "input": "number"
+            }
+        },
+        "response": "api"
+    },
+    "usersWhoTried": {
+        "method": "get",
+        "url": "/api/dashboard/getUsersWhoTried/{group}/{problem}/{type}",
+        "token": true,
+        "json": true,
+        "request": {
+            "group": {
+                "type": "url",
+                "position": 0,
+                "input": "number"
+            },
+            "problem": {
+                "type": "url",
+                "position": 1,
+                "input": "number"
+            },
+            "type": {
+                "type": "url",
+                "position": 2,
+                "input": "number"
+            }
+        },
+        "response": "api"
+    },
+    "testCourses": {
+        "method": "get",
+        "url": "/api/dashboard/tests/getCourseTestStatistics/{id}",
+        "token": true,
+        "json": true,
+        "request": {
+            "id": {
+                "type": "url",
+                "position": 0,
+                "input": "number"
+            }
+        },
+        "response": "api"
+    },
+    "accounts": {
+        "method": "get",
+        "url": "/api/dashboard/accounts/getManagedUsers/{id}",
+        "token": true,
+        "json": true
+    }
+}

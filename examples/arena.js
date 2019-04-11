@@ -19,6 +19,7 @@ class ArenaCLI {
      * Class constructor.
      */
     constructor() {
+        this._commands = [];
         this._client = new Client('examples.json');
         this._client
             .on('error', this._clientError.bind(this))
@@ -31,7 +32,7 @@ class ArenaCLI {
             removeHistoryDuplicates: true
         }).on('line', this._onLine.bind(this))
         .on('close', this._onClose.bind(this));
-        this._read.setPrompt('');
+        this._read.setPrompt('> ');
         this._clear();
         console.info(`${this._color(32)}Logging in...${this._color(0)}`);
     }
@@ -41,7 +42,7 @@ class ArenaCLI {
      */
     _clear() {
         process.stdout.write('\u001Bc');
-        console.log(`${this._color(41)}${this._color(32)}=====${this._color(0)} ${this._color(31)}${this._color(42)}ARENA CLI${this._color(0)} ${this._color(41)}${this._color(32)}=====${this._color(0)}`);
+        console.info(`${this._color(41)}${this._color(32)}=====${this._color(0)} ${this._color(31)}${this._color(42)}ARENA CLI${this._color(0)} ${this._color(41)}${this._color(32)}=====${this._color(0)}`);
     }
     /**
      * Formats a console color based on color number.
@@ -50,6 +51,15 @@ class ArenaCLI {
      */
     _color(num) {
         return `\x1b[${num}m`;
+    }
+    /**
+     * Prompts the user for input.
+     * @param {Function} callback Callback function
+     * @private
+     */
+    _prompt(callback) {
+        this._readResolve = callback;
+        this._read.prompt();
     }
     /**
      * When a Petlja client error occurs.
@@ -82,12 +92,68 @@ class ArenaCLI {
      * @private
      */
     _competitionsScreen() {
-        // this._clear();
-        console.log(this._competitions);
-        console.log(`${this._color(32)}Choose a competition:${this._color(0)}`);
-        console.log(this._competitions.current
+        this._clear();
+        console.info(`${this._color(32)}Choose a competition:${this._color(0)}`);
+        console.info(this._competitions.current
             .map(({title, url}, index) => `${this._color(47)}${this._color(30)}[${index}]${this._color(0)} ${this._color(32)}${title} ${this._color(33)}(${url})${this._color(0)}`)
             .join('\n'));
+        this._commands = this._competitions.current.map(({url}) => url);
+        this._prompt(this._competitionEntered);
+    }
+    /**
+     * Callback after a user inputs a competition.
+     * @param {String} line Competition line that was entered
+     * @private
+     */
+    _competitionEntered(line) {
+        const competition = this._competitions
+            .current
+            .find(({url}) => url === line);
+        if (competition) {
+            this._clear();
+            console.info(`${this._color(32)}Fetching competition data...${this._color(0)}`);
+            this._competitionInfo = competition;
+            this._client.arena.byUrl(competition.url)
+                .then(this._competitionData.bind(this));
+        } else {
+            console.error(`${this._color(31)}Invalid competition URL!${this._color(0)}`);
+            this._prompt();
+        }
+    }
+    /**
+     * Callback after fetching competition data.
+     * @param {Object} data Fetched competition data
+     * @private
+     */
+    _competitionData(data) {
+        if (data.viewModel) {
+            this._competitionInfo.viewModel = data.viewModel;
+            this._competitionScreen();
+        } else {
+            console.error(`${this._color(31)}There is something wrong with the competition data.${this._color(0)}`);
+        }
+    }
+    /**
+     * Prints out the competition screen.
+     * @private
+     */
+    _competitionScreen() {
+        const vm = this._competitionInfo.viewModel,
+        printData = {
+            /* eslint-disable sort-keys */
+            'Name': this._competitionInfo.title,
+            'ID': vm.id,
+            'URL': `https://arena.petlja.org/competition/${this._competitionInfo.url}`,
+            'Starts at': new Date(vm.startDate).toString(),
+            'Ends at': vm.endDate ? new Date(vm.endDate).toString() : 'Never',
+            'Badge': this._competitionInfo.badge || 'None'
+            /* eslint-enable sort-keys */
+        };
+        for (const key in printData) {
+            console.info(`${this._color(32)}${key}: ${this._color(33)}${printData[key]}${this._color(0)}`);
+        }
+        this._prompt();
+        // TODO
     }
     /**
      * Completes user command input.
@@ -96,7 +162,8 @@ class ArenaCLI {
      * @private
      */
     _readCompleter(line) {
-        return [];
+        const hits = this._commands.filter(cmd => cmd.startsWith(line));
+        return [hits.length ? hits : this._commands, line];
     }
     /**
      * Reads user input.
@@ -106,6 +173,8 @@ class ArenaCLI {
     _onLine(line) {
         if (line === 'exit' || line === 'quit') {
             process.exit();
+        } else if (line === 'clear' || line === 'clean' || line === 'cls') {
+            this._clear();
         } else if (typeof this._readResolve === 'function') {
             this._readResolve(line);
         }
@@ -115,7 +184,7 @@ class ArenaCLI {
      * @private
      */
     _onClose() {
-        console.log('Closing...');
+        console.info('Closing...');
     }
 }
 

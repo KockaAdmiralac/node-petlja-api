@@ -276,7 +276,7 @@
                 "position": 1,
                 "input": "string"
             },
-            "checkedProblems": {
+            "problemIds": {
                 "type": "body",
                 "position": 2,
                 "input": "object"

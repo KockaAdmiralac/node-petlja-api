@@ -1,19 +1,51 @@
 {
-    "babbleBoot": {
-        "method": "get",
-        "url": "/babble/boot.json",
+    "_common": {
         "domain": "algora",
         "json": true
+    },
+    "babbleBoot": {
+        "method": "get",
+        "url": "/babble/boot.json"
     },
     "babbleMessages": {
         "method": "get",
         "url": "/babble/topics/{id}.json",
-        "domain": "algora",
-        "json": true,
         "request": {
             "id": {
                 "type": "url",
                 "position": 0,
+                "input": "number"
+            }
+        }
+    },
+    "babbleMessagesDesc": {
+        "method": "get",
+        "url": "/babble/topics/{id}/posts/{after}/desc.json",
+        "request": {
+            "id": {
+                "type": "url",
+                "position": 0,
+                "input": "number"
+            },
+            "after": {
+                "type": "url",
+                "position": 1,
+                "input": "number"
+            }
+        }
+    },
+    "babbleMessagesAsc": {
+        "method": "get",
+        "url": "/babble/topics/{id}/posts/{after}/asc.json",
+        "request": {
+            "id": {
+                "type": "url",
+                "position": 0,
+                "input": "number"
+            },
+            "after": {
+                "type": "url",
+                "position": 1,
                 "input": "number"
             }
         }

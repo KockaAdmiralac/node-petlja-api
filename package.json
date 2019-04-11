@@ -3,8 +3,7 @@
     "version": "0.1.0",
     "description": "API client for Petlja (petlja.org).",
     "keywords": [
-        "petlja",
-        "discord"
+        "petlja"
     ],
     "license": "GPL-3.0-or-later",
     "author": {
