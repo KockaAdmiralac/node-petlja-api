@@ -9,7 +9,7 @@
  * Importing modules.
  */
 const readline = require('readline'),
-      Client = require('../lib/client.js');
+      {Client} = require('..');
 
 /**
  * Class for the Arena CLI.
@@ -92,7 +92,6 @@ class ArenaCLI {
      * @private
      */
     _competitionsScreen() {
-        this._clear();
         console.info(`${this._color(32)}Choose a competition:${this._color(0)}`);
         console.info(this._competitions.current
             .map(({title, url}, index) => `${this._color(47)}${this._color(30)}[${index}]${this._color(0)} ${this._color(32)}${title} ${this._color(33)}(${url})${this._color(0)}`)
@@ -110,43 +109,36 @@ class ArenaCLI {
             .current
             .find(({url}) => url === line);
         if (competition) {
-            this._clear();
             console.info(`${this._color(32)}Fetching competition data...${this._color(0)}`);
-            this._competitionInfo = competition;
-            this._client.arena.byUrl(competition.url)
-                .then(this._competitionData.bind(this));
+            if (competition.initialized) {
+                this._competitionScreen(competition);
+            } else {
+                competition.on(
+                    'init',
+                    this._competitionScreen.bind(this, competition)
+                );
+            }
         } else {
             console.error(`${this._color(31)}Invalid competition URL!${this._color(0)}`);
             this._prompt();
         }
     }
     /**
-     * Callback after fetching competition data.
-     * @param {Object} data Fetched competition data
-     * @private
-     */
-    _competitionData(data) {
-        if (data.viewModel) {
-            this._competitionInfo.viewModel = data.viewModel;
-            this._competitionScreen();
-        } else {
-            console.error(`${this._color(31)}There is something wrong with the competition data.${this._color(0)}`);
-        }
-    }
-    /**
      * Prints out the competition screen.
+     * @param {Competition} competition Displayed competition
      * @private
      */
-    _competitionScreen() {
-        const vm = this._competitionInfo.viewModel,
-        printData = {
+    _competitionScreen(competition) {
+        const printData = {
             /* eslint-disable sort-keys */
-            'Name': this._competitionInfo.title,
-            'ID': vm.id,
-            'URL': `https://arena.petlja.org/competition/${this._competitionInfo.url}`,
-            'Starts at': new Date(vm.startDate).toString(),
-            'Ends at': vm.endDate ? new Date(vm.endDate).toString() : 'Never',
-            'Badge': this._competitionInfo.badge || 'None'
+            'Name': competition.title,
+            'ID': competition.id,
+            'URL': `https://arena.petlja.org/competition/${competition.url}`,
+            'Starts at': competition.startDate.toString(),
+            'Ends at': competition.endDate ?
+                competition.endDate.toString() :
+                'Never',
+            'Badge': competition.badge || 'None'
             /* eslint-enable sort-keys */
         };
         for (const key in printData) {

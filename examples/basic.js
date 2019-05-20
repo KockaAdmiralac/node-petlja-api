@@ -10,7 +10,7 @@
 /**
  * Importing modules.
  */
-const Client = require('../lib/client.js');
+const {Client} = require('..');
 
 /**
  * Constants.

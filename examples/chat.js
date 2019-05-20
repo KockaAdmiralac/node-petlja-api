@@ -10,7 +10,7 @@
  */
 const fs = require('fs'),
       http = require('request-promise-native'),
-      Client = require('../lib/client.js');
+      {Client} = require('..');
 
 /**
  * Constants.

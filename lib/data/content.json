@@ -1,0 +1,150 @@
+{
+    "_common": {
+        "token": true,
+        "json": true,
+        "response": "api"
+    },
+    "userProblemStatistics": {
+        "method": "post",
+        "url": "/api/content/getUserStatisticsForProblem",
+        "token": false,
+        "request": {
+            "userId": {
+                "type": "body",
+                "position": 0,
+                "input": "number"
+            },
+            "problemId": {
+                "type": "body",
+                "position": 1,
+                "input": "number"
+            }
+        }
+    },
+    "assessResults": {
+        "method": "get",
+        "url": "/api/content/test/{course}/{lecture}/getAssessResults",
+        "request": {
+            "course": {
+                "type": "url",
+                "position": 0,
+                "input": "number"
+            },
+            "lecture": {
+                "type": "url",
+                "position": 1,
+                "input": "number"
+            }
+        }
+    },
+    "logAnswer": {
+        "method": "post",
+        "url": "/api/content/lecture/{course}/{lecture}/hsblog",
+        "request": {
+            "course": {
+                "type": "url",
+                "position": 0,
+                "input": "number"
+            },
+            "lecture": {
+                "type": "url",
+                "position": 1,
+                "input": "number"
+            }
+        }
+    },
+    "answerHistory": {
+        "method": "get",
+        "url": "/api/content/lecture/{course}/{lecture}/gethist.json",
+        "request": {
+            "course": {
+                "type": "url",
+                "position": 0,
+                "input": "number"
+            },
+            "lecture": {
+                "type": "url",
+                "position": 1,
+                "input": "number"
+            }
+        }
+    },
+    "runAnswer": {
+        "method": "post",
+        "url": "/api/content/lecture/{course}/{lecture}/runlog",
+        "request": {
+            "course": {
+                "type": "url",
+                "position": 0,
+                "input": "number"
+            },
+            "lecture": {
+                "type": "url",
+                "position": 1,
+                "input": "number"
+            }
+        }
+    },
+    "report": {
+        "method": "post",
+        "url": "/api/content/report-issue/",
+        "request": {
+            "title": {
+                "type": "body",
+                "position": 0,
+                "input": "string"
+            },
+            "description": {
+                "type": "body",
+                "position": 1,
+                "input": "string"
+            },
+            "location": {
+                "type": "body",
+                "position": 2,
+                "input": "string"
+            }
+        }
+    },
+    "evaluate": {
+        "method": "post",
+        "url": "/api/content/evaluate/{id}",
+        "request": {
+            "id": {
+                "type": "url",
+                "position": 0,
+                "input": "number"
+            }
+        }
+    },
+    "submit": {
+        "method": "post",
+        "url": "/api/content/submitProblem",
+        "request": {
+            "problemId": {
+                "type": "body",
+                "position": 0,
+                "input": "number"
+            },
+            "source": {
+                "type": "body",
+                "position": 1,
+                "input": "string"
+            },
+            "languageId": {
+                "type": "body",
+                "position": 2,
+                "input": "number"
+            }
+        }
+    },
+    "solution": {
+        "type": "get",
+        "url": "/api/content/getProblemSolution/{id}",
+        "request": {
+            "type": "url",
+            "position": 0,
+            "input": "number"
+        }
+    }
+}

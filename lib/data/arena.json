@@ -242,6 +242,17 @@
             }
         }
     },
+    "summary": {
+        "method": "get",
+        "url": "/api/dashboard/competitions/scoreboard/summary/{id}",
+        "request": {
+            "id": {
+                "type": "url",
+                "position": 0,
+                "input": "number"
+            }
+        }
+    },
     "submissions": {
         "method": "post",
         "url": "/api/competition/submissions",
@@ -375,6 +386,17 @@
     "statistics": {
         "method": "get",
         "url": "/api/competition/get-statistics/{id}",
+        "request": {
+            "id": {
+                "type": "url",
+                "position": 0,
+                "input": "number"
+            }
+        }
+    },
+    "info": {
+        "method": "get",
+        "url": "/api/competition/info/{id}",
         "request": {
             "id": {
                 "type": "url",

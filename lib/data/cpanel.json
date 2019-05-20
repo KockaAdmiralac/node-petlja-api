@@ -1,57 +1,51 @@
 {
+    "_common": {
+        "token": true,
+        "json": true,
+        "response": "api"
+    },
     "voucher": {
         "method": "post",
         "url": "/api/dashboard/profile/redeemVaucher/{voucher}",
-        "token": true,
-        "json": true,
         "request": {
             "voucher": {
                 "type": "url",
                 "position": 0,
                 "input": "string"
             }
-        },
-        "response": "api"
+        }
     },
     "avatar": {
         "method": "post",
         "url": "/api/dashboard/profile/editImage",
-        "token": true,
-        "json": true,
         "request": {
-            "Base64Image": {
+            "base64Image": {
                 "type": "body",
                 "position": 0,
                 "input": "string"
             },
-            "FileName": {
+            "fileName": {
                 "type": "body",
                 "position": 1,
                 "input": "string",
                 "value": "avatar.jpg"
             }
-        },
-        "response": "api"
+        }
     },
     "lectures": {
         "method": "post",
         "url": "/api/dashboard/statistics/lectures/{id}",
-        "token": true,
-        "json": true,
         "request": {
             "id": {
                 "type": "url",
                 "position": 0,
                 "input": "number"
             }
-        },
-        "response": "api"
+        }
     },
     "statistics": {
         "method": "get",
         "url": "/api/dashboard/statistics/{group}/{course}/{lecture}",
-        "token": true,
-        "json": true,
         "request": {
             "group": {
                 "type": "url",
@@ -68,14 +62,11 @@
                 "position": 2,
                 "input": "number"
             }
-        },
-        "response": "api"
+        }
     },
     "userLectureStatistics": {
         "method": "post",
         "url": "/api/dashboard/statistics/getUserLectureStatistics/{user}/{lecture}",
-        "token": true,
-        "json": true,
         "request": {
             "user": {
                 "type": "url",
@@ -87,32 +78,11 @@
                 "position": 1,
                 "input": "number"
             }
-        },
-        "response": "api"
-    },
-    "userProblemStatistics": {
-        "method": "post",
-        "url": "/api/content/getUserStatisticsForProblem",
-        "json": true,
-        "request": {
-            "problemId": {
-                "type": "body",
-                "position": 0,
-                "input": "number"
-            },
-            "userId": {
-                "type": "body",
-                "position": 1,
-                "input": "number"
-            }
-        },
-        "response": "api"
+        }
     },
     "elements": {
         "method": "get",
         "url": "/api/dashboard/elements/{group}/{course}/{lecture}",
-        "token": true,
-        "json": true,
         "request": {
             "group": {
                 "type": "url",
@@ -129,14 +99,11 @@
                 "position": 2,
                 "input": "number"
             }
-        },
-        "response": "api"
+        }
     },
     "usersWhoTried": {
         "method": "get",
         "url": "/api/dashboard/getUsersWhoTried/{group}/{problem}/{type}",
-        "token": true,
-        "json": true,
         "request": {
             "group": {
                 "type": "url",
@@ -153,27 +120,477 @@
                 "position": 2,
                 "input": "number"
             }
-        },
-        "response": "api"
+        }
     },
     "testCourses": {
         "method": "get",
         "url": "/api/dashboard/tests/getCourseTestStatistics/{id}",
-        "token": true,
-        "json": true,
         "request": {
             "id": {
                 "type": "url",
                 "position": 0,
                 "input": "number"
             }
-        },
-        "response": "api"
+        }
+    },
+    "submission": {
+        "method": "get",
+        "url": "/api/dashboard/getSubmissionById/{id}",
+        "request": {
+            "id": {
+                "type": "url",
+                "position": 0,
+                "input": "number"
+            }
+        }
     },
     "accounts": {
         "method": "get",
         "url": "/api/dashboard/accounts/getManagedUsers/{id}",
-        "token": true,
-        "json": true
+        "request": {
+            "id": {
+                "type": "url",
+                "position": 0,
+                "input": "number"
+            }
+        }
+    },
+    "resetPasswords": {
+        "method": "post",
+        "url": "/api/dashboard/accounts/resetAllPasswords/{id}",
+        "request": {
+            "id": {
+                "type": "url",
+                "position": 0,
+                "input": "number"
+            }
+        }
+    },
+    "resetPassword": {
+        "method": "post",
+        "url": "/api/dashboard/accounts/resetManagedUserPassword/{id}",
+        "request": {
+            "id": {
+                "type": "url",
+                "position": 0,
+                "input": "number"
+            }
+        }
+    },
+    "enableDisableGroup": {
+        "method": "post",
+        "url": "/api/dashboard/accounts/enableDisableManagedUsersGroup",
+        "request": {
+            "groupId": {
+                "type": "body",
+                "position": 0,
+                "input": "number"
+            },
+            "status": {
+                "type": "body",
+                "position": 1,
+                "input": "boolean"
+            }
+        }
+    },
+    "enableDisableUser": {
+        "method": "post",
+        "url": "/api/dashboard/accounts/enableDisableUser",
+        "request": {
+            "id": {
+                "type": "body",
+                "position": 0,
+                "input": "number"
+            },
+            "status": {
+                "type": "body",
+                "position": 1,
+                "input": "boolean"
+            }
+        }
+    },
+    "deleteUser": {
+        "method": "post",
+        "url": "/api/dashboard/accounts/deleteUser/{id}",
+        "request": {
+            "id": {
+                "type": "url",
+                "position": 0,
+                "input": "number"
+            }
+        }
+    },
+    "moveUser": {
+        "method": "post",
+        "url": "/api/dashboard/accounts/moveManagedUser/{user}/{group}",
+        "request": {
+            "user": {
+                "type": "url",
+                "position": 0,
+                "input": "number"
+            },
+            "group": {
+                "type": "url",
+                "position": 1,
+                "input": "number"
+            }
+        }
+    },
+    "deleteCompetition": {
+        "method": "post",
+        "url": "/api/dashboard/competitions/delete/{id}",
+        "request": {
+            "id": {
+                "type": "url",
+                "position": 0,
+                "input": "number"
+            }
+        }
+    },
+    "addOrganizer": {
+        "method": "post",
+        "url": "/api/dashboard/competitions/participants/addOrganizer",
+        "request": {
+            "competitionId": {
+                "type": "body",
+                "position": 0,
+                "input": "number"
+            },
+            "userName": {
+                "type": "body",
+                "position": 1,
+                "input": "string"
+            },
+            "initialBonusPenalty": {
+                "type": "body",
+                "position": 2,
+                "input": "number"
+            },
+            "pageNo": {
+                "type": "body",
+                "position": 3,
+                "input": "number"
+            },
+            "pageSize": {
+                "type": "body",
+                "position": 4,
+                "input": "number"
+            },
+            "groupId": {
+                "type": "body",
+                "position": 5,
+                "input": "number"
+            },
+            "userId": {
+                "type": "body",
+                "position": 6,
+                "input": "number"
+            }
+        }
+    },
+    "addCompetitor": {
+        "method": "post",
+        "url": "/api/dashboard/competitions/participants/addCompetitor",
+        "request": {
+            "competitionId": {
+                "type": "body",
+                "position": 0,
+                "input": "number"
+            },
+            "userName": {
+                "type": "body",
+                "position": 1,
+                "input": "string"
+            },
+            "initialBonusPenalty": {
+                "type": "body",
+                "position": 2,
+                "input": "number"
+            },
+            "pageNo": {
+                "type": "body",
+                "position": 3,
+                "input": "number"
+            },
+            "pageSize": {
+                "type": "body",
+                "position": 4,
+                "input": "number"
+            },
+            "groupId": {
+                "type": "body",
+                "position": 5,
+                "input": "number"
+            },
+            "userId": {
+                "type": "body",
+                "position": 6,
+                "input": "number"
+            }
+        }
+    },
+    "removeParticipant": {
+        "method": "post",
+        "url": "/api/dashboard/competition/participants/remove",
+        "request": {
+            "competitionId": {
+                "type": "body",
+                "position": 0,
+                "input": "number"
+            },
+            "userId": {
+                "type": "body",
+                "position": 1,
+                "input": "number"
+            },
+            "pageNo": {
+                "type": "body",
+                "position": 2,
+                "input": "number"
+            },
+            "pageSize": {
+                "type": "body",
+                "position": 3,
+                "input": "number"
+            }
+        }
+    },
+    "loadPage": {
+        "method": "get",
+        "url": "/api/dashboard/competition/{competition}/participants/load-page/{page}/{size}",
+        "request": {
+            "competition": {
+                "type": "url",
+                "position": 0,
+                "input": "number"
+            },
+            "page": {
+                "type": "url",
+                "position": 1,
+                "input": "number"
+            },
+            "size": {
+                "type": "url",
+                "position": 2,
+                "input": "number"
+            }
+        }
+    },
+    "regradeCompetition": {
+        "method": "post",
+        "url": "/api/dashboard/competitions/regrade/{id}",
+        "request": {
+            "id": {
+                "type": "url",
+                "position": 0,
+                "input": "number"
+            }
+        }
+    },
+    "searchProblems": {
+        "method": "post",
+        "url": "/api/dashboard/competitions/problems/search/{competition}/{query}",
+        "request": {
+            "competition": {
+                "type": "url",
+                "position": 0,
+                "input": "number"
+            },
+            "query": {
+                "type": "url",
+                "position": 1,
+                "input": "string"
+            }
+        }
+    },
+    "addGraderHints": {
+        "method": "post",
+        "url": "/api/dashboard/competitions/problems/addGraderHints",
+        "request": {
+            "competitionId": {
+                "type": "body",
+                "position": 0,
+                "input": "number"
+            },
+            "problemId": {
+                "type": "body",
+                "position": 1,
+                "input": "number"
+            },
+            "hintsYML": {
+                "type": "body",
+                "position": 2,
+                "input": "string"
+            },
+            "testCaseCount": {
+                "type": "body",
+                "position": 3,
+                "input": "number"
+            }
+        }
+    },
+    "addProblem": {
+        "method": "post",
+        "url": "/api/dashboard/competitions/problems/add",
+        "request": {
+            "competitionId": {
+                "type": "body",
+                "position": 0,
+                "input": "number"
+            },
+            "problemId": {
+                "type": "body",
+                "position": 1,
+                "input": "number"
+            },
+            "name": {
+                "type": "body",
+                "position": 2,
+                "input": "string"
+            },
+            "sortOrder": {
+                "type": "number",
+                "position": 3,
+                "input": "number"
+            }
+        }
+    },
+    "removeProblem": {
+        "method": "post",
+        "url": "/api/dashboard/competitions/problems/remove/{competition}/{problem}",
+        "request": {
+            "competition": {
+                "type": "url",
+                "position": 0,
+                "input": "number"
+            },
+            "problem": {
+                "type": "url",
+                "position": 1,
+                "input": "number"
+            }
+        }
+    },
+    "addLanguage": {
+        "method": "post",
+        "url": "/api/dashboard/competitions/programmingLanguages/add",
+        "request": {
+            "competitionId": {
+                "type": "body",
+                "position": 0,
+                "input": "number"
+            },
+            "languageId": {
+                "type": "body",
+                "position": 1,
+                "input": "number"
+            }
+        }
+    },
+    "removeLanguage": {
+        "method": "post",
+        "url": "/api/dashboard/competitions/programmingLanguages/remove",
+        "request": {
+            "competitionId": {
+                "type": "body",
+                "position": 0,
+                "input": "number"
+            },
+            "languageId": {
+                "type": "body",
+                "position": 1,
+                "input": "number"
+            }
+        }
+    },
+    "uploadNewsPhoto": {
+        "method": "post",
+        "url": "/api/dashboard/news/upload-photo",
+        "request": {
+            "newsId": {
+                "type": "body",
+                "position": 0,
+                "input": "number"
+            },
+            "fileName": {
+                "type": "body",
+                "position": 1,
+                "input": "number"
+            },
+            "base64Image": {
+                "type": "body",
+                "position": 2,
+                "input": "number"
+            },
+            "type": {
+                "type": "body",
+                "position": 3,
+                "input": "number"
+            }
+        }
+    },
+    "collaboratorSearch": {
+        "method": "post",
+        "url": "/api/dashboard/problems/collaborators/search/{problem}/{query}",
+        "request": {
+            "problem": {
+                "type": "url",
+                "position": 0,
+                "input": "number"
+            },
+            "query": {
+                "type": "url",
+                "position": 1,
+                "input": "string"
+            }
+        }
+    },
+    "removeCollaborator": {
+        "method": "post",
+        "url": "/api/dashboard/problems/collaborators/remove/{problem}/{user}",
+        "request": {
+            "problem": {
+                "type": "url",
+                "position": 0,
+                "input": "number"
+            },
+            "query": {
+                "type": "url",
+                "position": 1,
+                "input": "number"
+            }
+        }
+    },
+    "referentSubmission": {
+        "method": "post",
+        "url": "/api/dashboard/problems/getReferentSubmission/{problem}/{submission}",
+        "request": {
+            "problem": {
+                "type": "url",
+                "position": 0,
+                "input": "number"
+            },
+            "submission": {
+                "type": "url",
+                "position": 1,
+                "input": "number"
+            }
+        }
+    },
+    "deleteReferentSolution": {
+        "method": "post",
+        "url": "/api/dashboard/problems/deleteRefSolution/{problem}/{submission}",
+        "request": {
+            "problem": {
+                "type": "url",
+                "position": 0,
+                "input": "number"
+            },
+            "submission": {
+                "type": "url",
+                "position": 1,
+                "input": "number"
+            }
+        }
     }
 }
