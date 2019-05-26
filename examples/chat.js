@@ -10,7 +10,7 @@
  */
 const fs = require('fs'),
       http = require('request-promise-native'),
-      {Client} = require('..');
+      {Client, PetljaChat} = require('..');
 
 /**
  * Constants.
@@ -20,9 +20,9 @@ const ALGORA_URL = 'https://algora.petlja.org',
       EMBEDS = 10;
 
 /**
- * Petlja chat client.
+ * Relays Petlja chat to Discord.
  */
-class PetljaChat {
+class PetljaChatRelay {
     /**
      * Class constructor.
      */
@@ -33,7 +33,7 @@ class PetljaChat {
         process.on('SIGINT', this._exit.bind(this));
     }
     /**
-     * Initializes the client configuration.
+     * Initializes the relay configuration.
      * @private
      */
     _initConfig() {
@@ -81,58 +81,47 @@ class PetljaChat {
      * @private
      */
     _onLogin() {
-        this._client.algora.babbleBoot()
-            .then(this._onChatBoot.bind(this))
-            .then(this._onChatMessages.bind(this));
+        this._chat = new PetljaChat(this._client, {
+            initial: this._cache.id,
+            interval: this._config.interval
+        });
+        this._chat
+            .on('messages', this._onChatMessages.bind(this))
+            .on('initial', this._onInitialMessages.bind(this));
     }
     /**
-     * Callback after receiving the chat room ID.
-     * @param {Object} data Initial chat information
-     * @returns {Promise} Promise to listen on for initial chat messages
+     * Callback after receiving initial chat messages.
      * @private
      */
-    _onChatBoot(data) {
-        this._topicId = data.topics[0].id;
-        return this._client.algora.babbleMessages(this._topicId);
+    _onInitialMessages() {
+        this._saveCache(this._chat.lastMessageId);
     }
     /**
-     * Callback after receiving last chat messages.
-     * @param {Object} data Chat message information
+     * Callback after receiving new chat messages.
+     * @param {Array<Object>} messages Last chat messages
      * @private
      */
-    _onChatMessages(data) {
-        this._cache.id = data.post_stream.posts[0].post_number - 51;
-        this._interval = setInterval(
-            this._fetch.bind(this),
-            this._config.interval
+    _onChatMessages(messages) {
+        this._relay(messages.slice(0));
+        this._saveCache(messages[messages.length - 1].post_number);
+        fs.writeFile(
+            'cache.json',
+            JSON.stringify(this._cache),
+            this._cacheSaveCallback.bind(this)
         );
-        console.info('Relay successfully initialized.');
     }
     /**
-     * Fetches chat information in certain time intervals.
+     * Edits and saves the message cache.
+     * @param {Number} id Last message ID
      * @private
      */
-    _fetch() {
-        this._client.algora
-            .babbleMessagesAsc(this._topicId, this._cache.id + 1)
-            .then(this._fetchCallback.bind(this));
-    }
-    /**
-     * Callback after fetching chat messages.
-     * @param {Object} data New chat messages
-     * @private
-     */
-    _fetchCallback(data) {
-        const messages = data.posts;
-        if (messages.length) {
-            this._relay(messages);
-            this._cache.id = messages[messages.length - 1].post_number;
-            fs.writeFile(
-                'cache.json',
-                JSON.stringify(this._cache),
-                this._cacheSaveCallback.bind(this)
-            );
-        }
+    _saveCache(id) {
+        this._cache.id = id;
+        fs.writeFile(
+            'cache.json',
+            JSON.stringify(this._cache),
+            this._cacheSaveCallback.bind(this)
+        );
     }
     /**
      * Relays messages to Discord.
@@ -208,13 +197,11 @@ class PetljaChat {
     _exit() {
         process.stdout.write(`${String.fromCharCode(27)}[0G`);
         console.info('Shutting down the relay...');
-        if (this._interval) {
-            clearInterval(this._interval);
-        }
+        this._chat.close();
         if (this._relayTimeout) {
             clearTimeout(this._relayTimeout);
         }
     }
 }
 
-module.exports = new PetljaChat();
+module.exports = new PetljaChatRelay();

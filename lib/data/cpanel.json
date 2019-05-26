@@ -554,7 +554,7 @@
                 "position": 0,
                 "input": "number"
             },
-            "query": {
+            "user": {
                 "type": "url",
                 "position": 1,
                 "input": "number"
@@ -592,5 +592,424 @@
                 "input": "number"
             }
         }
+    },
+    "createAccounts": {
+        "method": "post",
+        "url": "/cpanel/Accounts",
+        "token": false,
+        "json": false,
+        "request": {
+            "amount": {
+                "type": "form",
+                "name": "NoAccounts",
+                "position": 0,
+                "input": "number"
+            },
+            "id": {
+                "type": "form",
+                "name": "GroupId",
+                "position": 1,
+                "input": "number"
+            },
+            "prefix": {
+                "type": "form",
+                "name": "Prefix",
+                "position": 2,
+                "input": "string"
+            },
+            "name": {
+                "type": "form",
+                "name": "GroupName",
+                "position": 3,
+                "input": "string"
+            },
+            "__RequestVerificationToken": {
+                "type": "form",
+                "fetch": {
+                    "form": ".form-horizontal"
+                }
+            }
+        },
+        "response": "ignore"
+    },
+    "editProfile": {
+        "method": "post",
+        "url": "/cpanel",
+        "token": false,
+        "json": false,
+        "request": {
+            "Profile.Id": {
+                "type": "form",
+                "fetch": {
+                    "form": ".form-horizontal"
+                }
+            },
+            "name": {
+                "type": "form",
+                "name": "Profile.FirstName",
+                "position": 0,
+                "input": "string"
+            },
+            "surname": {
+                "type": "form",
+                "name": "Profile.LastName",
+                "position": 1,
+                "input": "string"
+            },
+            "Profile.Email": {
+                "type": "form",
+                "fetch": {
+                    "form": ".form-horizontal"
+                }
+            },
+            "school": {
+                "type": "form",
+                "name": "Profile.School",
+                "position": 2,
+                "input": "string"
+            },
+            "country": {
+                "type": "form",
+                "name": "Profile.Country",
+                "position": 3,
+                "input": "string"
+            },
+            "city": {
+                "type": "form",
+                "name": "Profile.City",
+                "position": 4,
+                "input": "string"
+            },
+            "birthyear": {
+                "type": "form",
+                "name": "Profile.Birthday",
+                "position": 5,
+                "input": "number"
+            },
+            "__RequestVerificationToken": {
+                "type": "form",
+                "fetch": {
+                    "form": ".form-horizontal"
+                }
+            }
+        },
+        "response": "ignore"
+    },
+    "createGroup": {
+        "method": "post",
+        "url": "/cpanel/CreateGroup",
+        "token": false,
+        "json": false,
+        "request": {
+            "name": {
+                "type": "form",
+                "name": "Name",
+                "position": 0,
+                "input": "string"
+            },
+            "statisticCollection": {
+                "type": "form",
+                "name": "IsStatisticCollection",
+                "position": 1,
+                "input": "boolean"
+            },
+            "school": {
+                "type": "form",
+                "name": "School",
+                "position": 2,
+                "input": "string"
+            },
+            "__RequestVerificationToken": {
+                "type": "form",
+                "fetch": {
+                    "form": ".form-horizontal"
+                }
+            }
+        },
+        "response": "ignore"
+    },
+    "joinGroup": {
+        "method": "post",
+        "url": "/cpanel/JoinGroup/{id}",
+        "token": false,
+        "json": false,
+        "request": {
+            "id": {
+                "type": "url",
+                "position": 0,
+                "input": "string"
+            },
+            "__RequestVerificationToken": {
+                "type": "form",
+                "fetch": {
+                    "form": ".form-horizontal"
+                }
+            }
+        },
+        "response": "ignore"
+    },
+    "transferGroupOwnership": {
+        "method": "post",
+        "url": "/cpanel/GroupDetails/{id}",
+        "token": false,
+        "json": false,
+        "request": {
+            "id": {
+                "type": "url",
+                "position": 0,
+                "input": "number"
+            },
+            "PostAction": {
+                "type": "form",
+                "value": "TransferUserSetOwnership"
+            },
+            "user": {
+                "type": "form",
+                "name": "UserNameOrEmail",
+                "position": 1,
+                "input": "string"
+            },
+            "__RequestVerificationToken": {
+                "type": "form",
+                "fetch": {
+                    "form": ".form-horizontal"
+                }
+            }
+        },
+        "response": "ignore"
+    },
+    "editGroup": {
+        "method": "post",
+        "url": "/cpanel/EditGroup/{id}",
+        "token": false,
+        "json": false,
+        "request": {
+            "id": {
+                "type": "url",
+                "position": 0,
+                "input": "number"
+            },
+            "name": {
+                "type": "form",
+                "name": "Name",
+                "position": 1,
+                "input": "string"
+            },
+            "school": {
+                "type": "form",
+                "name": "School",
+                "position": 2,
+                "input": "string"
+            },
+            "__RequestVerificationToken": {
+                "type": "form",
+                "fetch": {
+                    "form": ".form-horizontal"
+                }
+            }
+        },
+        "response": "ignore"
+    },
+    "createCompetition": {
+        "method": "post",
+        "url": "/cpanel/CreateCompetition",
+        "token": false,
+        "json": false,
+        "request": {
+            "name": {
+                "type": "form",
+                "name": "Name",
+                "position": 0,
+                "input": "string"
+            },
+            "url": {
+                "type": "form",
+                "name": "Alias",
+                "position": 1,
+                "input": "string"
+            },
+            "description": {
+                "type": "form",
+                "name": "Description",
+                "position": 2,
+                "input": "string"
+            },
+            "startDate": {
+                "type": "form",
+                "name": "StartDate",
+                "position": 3,
+                "input": "string"
+            },
+            "endDate": {
+                "type": "form",
+                "name": "EndDate",
+                "position": 4,
+                "input": "string"
+            },
+            "noEnd": {
+                "type": "form",
+                "name": "HasNoEndDate",
+                "position": 5,
+                "input": "string"
+            },
+            "__RequestVerificationToken": {
+                "type": "form",
+                "fetch": {
+                    "form": ".form-horizontal"
+                }
+            }
+        },
+        "response": "ignore"
+    },
+    "competitionSettings": {
+        "method": "post",
+        "url": "/cpanel/CompetitionSettings/{id}",
+        "token": false,
+        "json": false,
+        "request": {
+            "id": {
+                "type": "url",
+                "position": 0,
+                "input": "number"
+            },
+            "Id": {
+                "type": "form",
+                "fetch": {
+                    "form": ".form-horizontal"
+                }
+            },
+            "name": {
+                "type": "form",
+                "name": "Name",
+                "position": 1,
+                "input": "string"
+            },
+            "url": {
+                "type": "form",
+                "name": "Alias",
+                "position": 2,
+                "input": "string"
+            },
+            "description": {
+                "type": "form",
+                "name": "Description",
+                "position": 3,
+                "input": "string"
+            },
+            "startDate": {
+                "type": "form",
+                "name": "StartDate",
+                "position": 4,
+                "input": "string"
+            },
+            "noFreezeDate": {
+                "type": "form",
+                "name": "HasNotFreezeDate"
+            },
+            "noEnd": {
+                "type": "form",
+                "name": "HasNoEndDate",
+                "position": 5,
+                "input": "string"
+            },
+            "endDate": {
+                "type": "form",
+                "name": "EndDate",
+                "position": 6,
+                "input": "string"
+            },
+            "isPublic": {
+                "type": "form",
+                "name": "IsPublic",
+                "position": 7,
+                "input": "boolean"
+            },
+            "takeBest": {
+                "type": "form",
+                "name": "TakeBest",
+                "position": 8,
+                "input": "boolean"
+            },
+            "scoreboardVisibleToCompetitors": {
+                "type": "form",
+                "name": "IsScoreboardVisibleToCompetitors",
+                "position": 9,
+                "input": "boolean"
+            },
+            "penaltyCalculated": {
+                "type": "form",
+                "name": "IsPenaltyCalculated",
+                "position": 10,
+                "input": "boolean"
+            },
+            "penaltyPerFail": {
+                "type": "form",
+                "name": "PenaltyPerFail",
+                "position": 11,
+                "input": "number"
+            },
+            "penaltyPerTime": {
+                "type": "form",
+                "name": "PenaltyPerTime",
+                "position": 12,
+                "input": "number"
+            },
+            "evaluateAll": {
+                "type": "form",
+                "name": "EvaulateAllTestCasesInSubtask",
+                "position": 13,
+                "input": "boolean"
+            },
+            "intervalBetweenSubmissions": {
+                "type": "form",
+                "name": "MinIntervalBetweenSubmissions",
+                "position": 14,
+                "input": "number"
+            },
+            "maxSubmissions": {
+                "type": "form",
+                "name": "MaximumNumberOfSubmissionsPerProblem",
+                "position": 15,
+                "input": "number"
+            },
+            "attachmentTitle": {
+                "type": "form",
+                "name": "AttachmentTitle",
+                "position": 16,
+                "input": "string"
+            },
+            "attachment": {
+                "type": "form",
+                "name": "AttachmentUrl",
+                "position": 17,
+                "input": "string"
+            },
+            "questions": {
+                "type": "form",
+                "name": "IsQAEnabled",
+                "position": 18,
+                "input": "boolean"
+            },
+            "announcements": {
+                "type": "form",
+                "name": "IsAnnouncementsEnabled",
+                "position": 18,
+                "input": "boolean"
+            },
+            "utcOffset": {
+                "type": "form",
+                "name": "utcOffset",
+                "position": 17,
+                "input": "number",
+                "value": -120
+            },
+            "__RequestVerificationToken": {
+                "type": "form",
+                "fetch": {
+                    "form": ".form-horizontal"
+                }
+            }
+        },
+        "response": "ignore"
     }
 }

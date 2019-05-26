@@ -142,9 +142,11 @@
         "type": "get",
         "url": "/api/content/getProblemSolution/{id}",
         "request": {
-            "type": "url",
-            "position": 0,
-            "input": "number"
+            "id": {
+                "type": "url",
+                "position": 0,
+                "input": "number"
+            }
         }
     }
 }

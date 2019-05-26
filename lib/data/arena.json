@@ -51,11 +51,6 @@
                 "position": 0,
                 "input": "number"
             },
-            "problemId": {
-                "type": "body",
-                "position": 1,
-                "input": "number"
-            },
             "source": {
                 "type": "body",
                 "position": 2,
