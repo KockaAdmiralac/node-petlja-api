@@ -1,5 +1,5 @@
 # login
-Login-related endpoints used internally by a `Client` instance.
+Login-related endpoints used internally by a [`Client`](./Client.md) instance.
 
 ## petlja
 Logs in to [Petlja](https://petlja.org).
