@@ -49,5 +49,9 @@
                 "input": "number"
             }
         }
+    },
+    "staffLogs": {
+        "method": "get",
+        "url": "/admin/logs/staff_action_logs.json"
     }
 }
