@@ -9,8 +9,8 @@
     "license": "GPL-3.0-or-later",
     "author": {
         "name": "KockaAdmiralac",
-        "email": "1405223@gmail.com",
-        "url": "https://github.com/KockaAdmiralac"
+        "email": "git@kocka.tech",
+        "url": "https://kocka.tech"
     },
     "contributors": [],
     "main": "lib/index.js",
@@ -22,11 +22,11 @@
         "url": "https://github.com/KockaAdmiralac/node-petlja-api.git"
     },
     "dependencies": {
-        "node-html-parser": ">=1.1.16",
-        "request": ">=2.88.0",
-        "request-promise-native": ">=1.0.7"
+        "node-html-parser": ">=1.2.13",
+        "request": ">=2.88.2",
+        "request-promise-native": ">=1.0.8"
     },
     "devDependencies": {
-        "eslint": ">=6.5.1"
+        "eslint": ">=6.8.0"
     }
 }
