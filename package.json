@@ -1,6 +1,6 @@
 {
     "name": "petlja",
-    "version": "0.1.3",
+    "version": "0.1.4",
     "description": "API client for Petlja (petlja.org).",
     "keywords": [
         "petlja",
@@ -22,11 +22,11 @@
         "url": "https://github.com/KockaAdmiralac/node-petlja-api.git"
     },
     "dependencies": {
-        "node-html-parser": ">=1.2.13",
+        "node-html-parser": ">=3.1.0",
         "request": ">=2.88.2",
-        "request-promise-native": ">=1.0.8"
+        "request-promise-native": ">=1.0.9"
     },
     "devDependencies": {
-        "eslint": ">=6.8.0"
+        "eslint": ">=7.22.0"
     }
 }
